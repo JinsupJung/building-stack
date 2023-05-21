@@ -1,0 +1,205 @@
+---
+title: Next.js Start
+description: Next.js 시작하기
+date: "2023-04-09"
+---
+
+
+### Next.js가 제공하는 여러 기능들
+
+- Page-based routing system (with 다이나믹 라우트)
+  - /pages/ 가 라우팅하는데 기본이다.
+- Pre-rendering SSG / SSR
+  - 서버 사이드 렌더링 (요청 할 때마다 새로 렌더링 해서 준다.)
+- Automatic code splitting for faster page loads
+  - 파일을 하나로 만들 수도 있고 쪼개서 만들 수도 있다. Next는 알아서 파일을 쪼개준다. 그래서 페이지를 빠르게 로드 할 수 있다.
+- Client-side routing with optimized prefetching
+  - prefetching를 통해 최적화 시켜준다.
+- API Routes
+- Development environment 핫 리로드를 의미한다.
+
+> https://next-learn-starter.vercel.app/
+
+이 블로그는 Next.js가 제공하는 blog다. 그리고 이것을 확장시켜 나갈 것이다. 👉
+`프로젝트 생성 - 메인 페이지(블로그 글 리스트) - 블로그 글 상세 페이지 - 배포` 이 순서로 진행할 것!!
+
+### 블로그
+
+- 개발자들은 자기만의 블로그를 하나씩 가지고 있다.
+  꾸준히 공부하고 고민한 부분에 대한 기록과 다른 사람들에게 지식을 공유하고 본인 스스로를 기록하며 나에 대해서 홍보하기 좋다.
+
+### 프로젝트 만들기
+
+```
+yarn create next-app blog --example "https://github.com/vercel/next-learn/tree/master/basics/learn-starter"
+```
+
+실행
+
+```
+yarn dev
+```
+
+prettier 실행
+
+```
+yarn add -D prettier
+```
+
+### Link 태그와 a의 차이
+
+- Link 태그 : 최적화된다. 페이지안에서 필요한 내용들만 추가적으로 불러오는 식이다. 자바스크립트가 그대로있는 상태에서 page 컴포넌트만 교체된다. 이런 것을 Client Side Navigate라고 한다.
+- a 태그 : 문서 자체를 처음부터 다시 불러오는 식이다. (reload)
+
+### Code Splitting
+
+Next.js는 Automatic Code Splitting을 제공한다.
+
+- 특정 페이지에 접근 할 때는 해당 페이지를 그릴 때 필요한 부분만 로드한다.
+- 페이지 이동을 할 땐 목적지 페이지에 필요한 부분만 추가 로드한다.
+  이를 통해 성능이 최적화 된다.
+
+### Prefetching
+
+> `<Link>` 컴포넌트를 이용하면, viewport에 Link 컴포넌트가 노출 됐을 때 href 로 연결된 페이지의 부분을 로드한다. 이를 통해 성능을 최적화 할 수 있다. 쉽게 말해서 Prefetching이란 로드 하자마자 링크 컴포넌트 안에 있는 내용물을 미리 가져오기 때문에 최적화가 된다. 스크롤 내리자마자 뷰포트에 노출되는 순간 이게 바로 pre(미리)fetching = 패치하자. 란 뜻이다. 네트워크에 다른 Link에 있는 파일들이 미리 가져와 있는 것을 볼 수 있다.
+
+### Link Components
+
+- 본 서비스 외부 링크로 연결할 때는 `<a>` 태그만 쓰면된다.
+- 링크 컴포넌트에 스타일을 줄 때는 `<a>` 태그에 줘야한다.
+
+### public
+
+- 정적 리소스를 Next.js로 서빙하기 위한 디렉토리
+- robots.tst -->
+- images
+
+Next에서는 Image Component를 사용한다.
+
+```
+<Image src="/images/>
+```
+
+### Images
+
+Next에서 제공해주는 Images 컴포넌트를 사용하면 기존에 img 태그보다 용량이 최적화 된 것을 확인할 수 있다. img 태그의 용량은 6.8kb 인것이 images 컴포넌트를 사용하니 3.8kb가 되었다.
+
+### MetaTag
+
+메타태그는 head 안에 title 등등 그 외의 정보들을 불러올 수 있다. 구글이라는 검색 엔진이 각 사이트를 스크래핑 또는 크롤링을 하면서 어떤 정보나 데이터를 보여줘야 되겠다 라고 하는 것이다.
+
+```
+import Head from 'next/head'
+
+<Head>
+  <title>제목</title>
+</Head>
+```
+
+- Head Component
+
+  - title / image / description 등 og (open graph) tag
+  - icon
+  - third party script (ex. google-analytics) 모든 스크립트를 head 태그에 넣을 수 있다.
+
+- Script Component
+  - strategy
+  - onLoad
+
+### Global CSS
+
+- pages/\_app.js 만들고 styles/global.css 만들고 전역으로 적용할 스타일을 정의하고 \_app.js에서 import '../styles/global.css'를 해보자.
+
+### Pre-rendering
+
+- Next를 활용하면 페이지별로 pre-rendering 방식을 선택할 수 있다.
+- getStaticProps를 사용하면 SSG
+- getServerSideProps를 사용하면 SSR
+
+### SSG를 사용하면 좋은 페이지
+
+- Margeting pages : 마케팅 페이지
+- Blog posts : 블로그 포스트
+- E-commerce projduct listings : 이커머스
+- Help and documentation : 고객센터
+
+적용 여부 선택 기준 : 사용자가 페이지를 요청하기 전에 pre-render 할 수 있는가?
+그렇다면 SSG / 아니라면 SSR 혹은 ISR 혹은 CSR을 사용하면 된다.
+
+### SSG의 2가지 케이스
+
+- 외부 데이터 없이 pre-rendering
+- 외부 데이터를 가져와서 pre-rendering
+  (외부데이터란? 다른 파일, api, DB 등...)
+
+---
+
+## 블로그 만들기 시작
+
+md 파일에 있는
+
+```
+
+-----
+으로 감싸진 metadata를 읽어보자. (YAML Front Matter)
+-----
+
+```
+
+- yarn add gray-matter 설치하기
+- gray-matter로 YAML 파일을 파싱한다. (메타태그만 파싱함)
+
+### 요구사항
+
+- SSG 사용해서
+- url : /posts/ssg-ssr 이면 /posts/ssg-ssr.md 를 읽어서 보여준다.
+- url : /posts/pre-rendering 이면 /posts/pre-rendering.md 를 읽어서 보여준다.
+
+### \*.md 파일을 해석하기 위해서 도구 설치
+
+- `yarn add remark remark-html`
+
+### Date formatting 도구 설치
+
+```
+yarn add date-fns
+```
+
+- parseISO
+- format
+
+### getStaticPaths에서 fallback이란 ?
+
+```
+export async function getStaticPaths() {
+  // 배열을 줌
+  const paths = getAllPostIds()
+
+  /**
+   * fallback은 url을 이탈했을 때
+   * true로 하면 에러가 나온다
+   * false로 하면 404 페이지가 나온다.
+   * 'blocking'을 하면 다른 에러가 나온다.
+   */
+  return {
+    paths,
+    fallback: true,
+  }
+}
+```
+
+- getStaticPaths는 build를 거쳐야 된다. fallback란에 true를 넣으면 build시 에러의 이유가 나온다.
+
+```
+yarn build && yarn dev
+```
+
+하면됨.
+
+결론 : 빌드시 생성되지 않은 page에 대한 처리.
+
+#### fallback 값이 ??
+
+- flase : 처리하지 않기 때문에 404
+- true : fallback 동작으로 로딩을 그려줬다가 데이터가 있으면 그 때 보여준다.
+- 'blocking' : 로더도 필요 없이 안그리고 있다가 제너레이션 될 때 그 때 보여준다.

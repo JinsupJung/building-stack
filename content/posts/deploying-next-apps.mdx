@@ -1,0 +1,48 @@
+---
+title: Next.js 앱 배포
+description: Vercel에 배포하기
+date: "2023-05-20"
+---
+
+
+📖 Vercel이란?
+------------
+
+> Next.js에서 제공하는 배포 플랫폼이다.  
+> 빌드, 배포, 호스팅을 제공하고, 공식 문서에서도 Vercel을 통한 Front Project 배포를 권장한다.  
+> 또한 Github Repository를 통해 정말 쉽게 배포가 가능하다.
+
+✅ Vercel 배포 순서
+--------------
+
+<Image src="/nextvercel.png" width="718" height="404" alt="Image" />
+
+### 📌 Script 확인 / 추가
+
+1.  pakage.json에 아래 스크립트가 있는지 확인하고, 없다면 추가한다.
+``` js
+    {
+      "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start"
+      }
+    }
+```
+
+### 📌 Repository 등록
+
+2.  Github에 Repository를 만들고 Push까지 마친 뒤, [Vercel](https://vercel.com/new)로 이동한다.  
+    ![](https://velog.velcdn.com/images/mjooon98/post/1254b2a8-845e-4ef0-9e5a-44e48cd314c1/image.png)  
+    Continue with GitHub를 클릭하고 Repository를 선택한다.
+
+### 📌 Configure Project
+
+Build Command에 1번에서 설정한 build 명령어를 입력한다.  
+기본 값으로 사용해도 무방하다면 설정하지 않아도 된다.  
+![](https://velog.velcdn.com/images/mjooon98/post/b203ac85-08f2-470b-b74e-05f711704384/image.png)
+
+### 📌 배포 완료
+
+_나는 기존에 React로 작업한 결과물은 gh-pages, heroku와 같은 곳에 배포했었는데, Next.js는 이렇게 간단하게 배포가 가능하니 너무 편리했다.  
+Git에 commit이 발생하면 자동으로 다시 빌드까지 해주니 너무 편리하지 않을 수가 없다!_
