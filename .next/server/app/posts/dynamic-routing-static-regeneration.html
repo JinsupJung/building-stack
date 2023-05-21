@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="preload" as="font" href="/_next/static/media/2aaf0723e720e8b9-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/97e1ef85d85e825c.css" data-precedence="next"/><title>Next.js 다이나믹 라우팅이란?</title><meta name="description" content="Next.js의 다이나믹 라우팅"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="any"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js" noModule=""></script></head><body class="antialiased min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 __className_0ec1f4"><script>!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','dark');var e=localStorage.getItem('theme');if('system'===e||(!e&&true)){var t='(prefers-color-scheme: dark)',m=window.matchMedia(t);if(m.media!==t||m.matches){d.style.colorScheme = 'dark';c.add('dark')}else{d.style.colorScheme = 'light';c.add('light')}}else if(e){c.add(e|| '')}if(e==='light'||e==='dark')d.style.colorScheme=e}catch(e){}}()</script><div class="max-w-2xl mx-auto py-10 px-4"><header><div class="flex items-center justify-between"><button class="border rounded-md w-6 h-6 flex items-center justify-center"><span class="sr-only">Toggle mode</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg></button><nav class="ml-auto text-md font-medium space-x-6"><a href="/">Home</a><a href="/about">About</a></nav></div></header><main><article class="py-6 prose dark:prose-invert"><h1 class="mb-2">Next.js 다이나믹 라우팅이란?</h1><p class="text-xl mt-0 text-slate-700 dark:text-slate-200">Next.js의 다이나믹 라우팅</p><hr class="my-4"/><h2>➕ Routing</h2>
+<blockquote>
+<ul>
+<li>pages/about.js아래와 같이 React 구성 요소를 내보내는 것을 생성 하면 에서 액세스할 수 있다.</li>
+<li>리액트에서는 &#x27;/about&#x27; 이라고 각각의 페이지에 라우터를 추가해줬지만, next.js의 경우에는 <strong>pages 디렉토리안에 라우터 경로에 해당하는 title을 지정해주면 자동적으로 url로 적용된다.</strong></li>
+</ul>
+</blockquote>
+<ul>
+<li>react router 방식</li>
+</ul>
+<pre><code class="language-js">&gt;     &lt;Routes&gt;
+&gt;       	&lt;Route path=&quot;/about&quot; component={&lt;About /&gt;} /&gt;
+&gt;       &lt;/Routes&gt;
+</code></pre>
+<ul>
+<li>Next.js 방식</li>
+</ul>
+<pre><code class="language-js">&gt;     //pages/about
+&gt;     export default function About(){
+&gt;     	return &lt;div&gt;&lt;This is About Page./div&gt;
+&gt;     }
+</code></pre>
+<p>따로 route 경로를 설정하지 않아도 자동으로 경로가 지정됨. next.js의 강점이라고 할 수 있음.</p>
+<h2>◻ Dynamic Routing(동적라우팅)</h2>
+<blockquote>
+<p>❓ <strong>동적 라우팅이란?</strong><br/>
+<!-- -->- 내부 네트워크와 외부 네트워크를 연결하기 위해서는 내부에서 외부로 연결하는 통로가 필요하고 이것을 gateway라 한다.시간과 비용 그리고 상황을 고려하여 여러가지 방법으로 목적지에 도달할 수 있는데 네트워크는 이러한 상황을 고려하여 <strong>목적지까지의 경로를 알려주는 것을 routing</strong>이라고 한다.<br/>
+<!-- -->- <strong>Dynamic routing</strong>은 단어에서 풍겨지는 느낌 그대로 동적으로 경로 설정을 해주는 것이다. 네트워크가 변경됨에 따라 최적의 경로가 바뀔 수 있으며 <strong>dynamic route는 프로토콜에 따라 네트워크 변경에 맞춰 최적의 경로 값을 알려준다.</strong></p>
+</blockquote>
+<blockquote>
+<p>❓ <strong>프로토콜이란?</strong><br/>
+<!-- -->- 프로토콜은 컴퓨터 내부에서, 또는 컴퓨터 사이에서 <strong>데이터의 교환 방식을 정의하는 규칙 체계</strong>입니다. 기기 간 통신은 교환되는 데이터의 형식에 대해 상호 합의를 요구한다. 이런 형식을 정의하는 규칙의 집합을 프로토콜이라고 한다.</p>
+</blockquote>
+<blockquote>
+<p>❗ <strong>내가 생각하는 동적라우팅</strong><br/>
+<!-- -->- 페이지와 네트워크를 연결하는 url이 있고, 연결하는 경로를 라우팅이라고 한다. 네트워크가 변경됨에 따라 동적 라우팅은 달라지며, 프로토콜에 따라 네트워크 변경에 맞게 최적의 경로 값을 알려준다.<br/>
+<!-- -->- 예를 들어 10명의 데이터를 갖고있는 users data가 있다고 가정하면, next.js, react-dom-router 에서는 id를 url경로로 만들어 동적으로 id에 맞는 data를 가져오도록한다.(브라우져와 id를 갖고 동적으로 네트워킹함.) 이게 동적 라우팅임. 내 생각엔.</p>
+</blockquote>
+<h3>✨ Next.js에서의 동적라우팅</h3>
+<p>◾ next.js 공홈 동적라우팅 예제</p>
+<pre><code class="language-js">&gt; *   components  
+&gt;     \- header.js
+&gt; *   pages
+&gt;     *   index.js
+&gt;     *   about.js
+&gt;     *   \[id\]
+&gt;         *   index.js
+&gt;         *   \[comment\].js
+</code></pre>
+<p>◾ index.js =&gt; route : &#x27;/&#x27;</p>
+<pre><code class="language-js">&gt;     import Header from &#x27;../components/header&#x27;
+&gt;     const Home = () =&gt; (
+&gt;       &lt;&gt;
+&gt;         &lt;Header /&gt;
+&gt;         &lt;h1&gt;Hello World!&lt;/h1&gt;
+&gt;       &lt;/&gt;
+&gt;     )
+&gt;     export default Home
+</code></pre>
+<p>◾ components/header.js</p>
+<pre><code class="language-js">&gt;     import Link from &#x27;next/link&#x27;
+&gt;     const Header = () =&gt; (
+&gt;       &lt;header&gt;
+&gt;         &lt;ul&gt;
+&gt;           &lt;li&gt;
+&gt;             &lt;Link href=&quot;/post/first&quot;&gt;
+&gt;             //query:{id:&#x27;first&#x27;}
+&gt;               &lt;a&gt;First Post&lt;/a&gt;
+&gt;             &lt;/Link&gt;
+&gt;           &lt;/li&gt;
+&gt;           &lt;li&gt;
+&gt;             &lt;Link href=&quot;/post/second&quot;&gt;
+&gt;             //query:{id:&#x27;second&#x27;}
+&gt;               &lt;a&gt;Second Post&lt;/a&gt;
+&gt;             &lt;/Link&gt;
+&gt;           &lt;/li&gt;
+&gt;         &lt;/ul&gt;
+&gt;       &lt;/header&gt;
+&gt;     )
+&gt;     export default Header
+</code></pre>
+<p>◾ pages/[id]/index.js =&gt; route : &#x27;/first or second&#x27;</p>
+<pre><code class="language-js">&gt;     import { useRouter } from &quot;next/router&quot;;
+&gt;     import Link from &quot;next/link&quot;;
+&gt;     import Header from &quot;../../../components/header&quot;;
+&gt;     const Post = () =&gt; {
+&gt;       const router = useRouter();
+&gt;       const { id } = router.query;
+&gt;       return (
+&gt;         &lt;&gt;
+&gt;           &lt;Header /&gt;
+&gt;           &lt;h1&gt;Post: {id}&lt;/h1&gt;
+&gt;           // first or second
+&gt;           &lt;ul&gt;
+&gt;             &lt;li&gt;
+&gt;               &lt;Link href=&quot;/post/[id]/[comment]&quot; as={`/post/${id}/first-comment`}&gt;
+&gt;                 &lt;a&gt;First comment&lt;/a&gt;
+&gt;               &lt;/Link&gt;
+&gt;             &lt;/li&gt;
+&gt;             &lt;li&gt;
+&gt;               &lt;Link href=&quot;/post/[id]/[comment]&quot; as={`/post/${id}/second-comment`}&gt;
+&gt;                 &lt;a&gt;Second comment&lt;/a&gt;
+&gt;               &lt;/Link&gt;
+&gt;             &lt;/li&gt;
+&gt;           &lt;/ul&gt;
+&gt;         &lt;/&gt;
+&gt;       );
+&gt;     };
+&gt;     export default Post;
+</code></pre></article></main></div><script src="/_next/static/chunks/webpack-6728a9b28f251f81.js" async=""></script><script src="/_next/static/chunks/2443530c-ac8981f6a5707b30.js" async=""></script><script src="/_next/static/chunks/139-a247973f5f8d117e.js" async=""></script><script src="/_next/static/chunks/main-app-acadf0f678c7afa8.js" async=""></script></body></html><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/2aaf0723e720e8b9-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/97e1ef85d85e825c.css\",{\"as\":\"style\"}]\n0:\"$L3\"\n"])</script><script>self.__next_f.push([1,"4:I{\"id\":\"7858\",\"chunks\":[\"272:static/chunks/webpack-6728a9b28f251f81.js\",\"667:static/chunks/2443530c-ac8981f6a5707b30.js\",\"139:static/chunks/139-a247973f5f8d117e.js\"],\"name\":\"\",\"async\":false}\n6:I{\"id\":\"3055\",\"chunks\":[\"272:static/chunks/webpack-6728a9b28f251f81.js\",\"667:static/chunks/2443530c-ac8981f6a5707b30.js\",\"139:static/chunks/139-a247973f5f8d117e.js\"],\"name\":\"\",\"async\":false}\n7:I{\"id\":\"2112\",\"chunks\":[\"414:static/chunks/414-bfaafd372e832af9.js\",\"185:static/chunks/app/layout-9e07d8f5fbbdc297.js\"],\"nam"])</script><script>self.__next_f.push([1,"e\":\"ThemeProvider\",\"async\":false}\n8:I{\"id\":\"4349\",\"chunks\":[\"414:static/chunks/414-bfaafd372e832af9.js\",\"185:static/chunks/app/layout-9e07d8f5fbbdc297.js\"],\"name\":\"ModeToggle\",\"async\":false}\n9:I{\"id\":\"414\",\"chunks\":[\"414:static/chunks/414-bfaafd372e832af9.js\",\"185:static/chunks/app/layout-9e07d8f5fbbdc297.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":\"1234\",\"chunks\":[\"414:static/chunks/414-bfaafd372e832af9.js\",\"185:static/chunks/app/layout-9e07d8f5fbbdc297.js\"],\"name\":\"Analytics\",\"async\":false}\nb:I{\"id\":\"9544\",\"ch"])</script><script>self.__next_f.push([1,"unks\":[\"272:static/chunks/webpack-6728a9b28f251f81.js\",\"667:static/chunks/2443530c-ac8981f6a5707b30.js\",\"139:static/chunks/139-a247973f5f8d117e.js\"],\"name\":\"\",\"async\":false}\nc:I{\"id\":\"99\",\"chunks\":[\"272:static/chunks/webpack-6728a9b28f251f81.js\",\"667:static/chunks/2443530c-ac8981f6a5707b30.js\",\"139:static/chunks/139-a247973f5f8d117e.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"3:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/97e1ef85d85e825c.css\",\"precedence\":\"next\"}]],[\"$\",\"$L4\",null,{\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/posts/dynamic-routing-static-regeneration\",\"initialTree\":[\"\",{\"children\":[\"posts\",{\"children\":[[\"slug\",\"dynamic-routing-static-regeneration\",\"c\"],{\"children\":[\"__PAGE__?{\\\"slug\\\":[\\\"dynamic-routing-static-regeneration\\\"]}\",{}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[\"$L5\",[\"$\",\"meta\",null,{\"name\":\"next-size-adjust\"}]],\"globalErrorComponent\":\"$6\",\"notFound\":[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"antialiased min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 __className_0ec1f4\",\"children\":[\"$\",\"$L7\",null,{\"attribute\":\"class\",\"defaultTheme\":\"system\",\"enableSystem\":true,\"children\":[[\"$\",\"div\",null,{\"className\":\"max-w-2xl mx-auto py-10 px-4\",\"children\":[[\"$\",\"header\",null,{\"children\":[\"$\",\"div\",null,{\"className\":\"flex items-center justify-between\",\"children\":[[\"$\",\"$L8\",null,{}],[\"$\",\"nav\",null,{\"className\":\"ml-auto text-md font-medium space-x-6\",\"children\":[[\"$\",\"$L9\",null,{\"href\":\"/\",\"children\":\"Home\"}],[\"$\",\"$L9\",null,{\"href\":\"/about\",\"children\":\"About\"}]]}]]}]}],[\"$\",\"main\",null,{\"children\":[\"$undefined\",[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]]]}]]}],[\"$\",\"$La\",null,{}]]}]}]}],\"asNotFound\":false,\"children\":[[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"antialiased min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 __className_0ec1f4\",\"children\":[\"$\",\"$L7\",null,{\"attribute\":\"class\",\"defaultTheme\":\"system\",\"enableSystem\":true,\"children\":[[\"$\",\"div\",null,{\"className\":\"max-w-2xl mx-auto py-10 px-4\",\"children\":[[\"$\",\"header\",null,{\"children\":[\"$\",\"div\",null,{\"className\":\"flex items-center justify-between\",\"children\":[[\"$\",\"$L8\",null,{}],[\"$\",\"nav\",null,{\"className\":\"ml-auto text-md font-medium space-x-6\",\"children\":[[\"$\",\"$L9\",null,{\"href\":\"/\",\"children\":\"Home\"}],[\"$\",\"$L9\",null,{\"href\":\"/about\",\"children\":\"About\"}]]}]]}]}],[\"$\",\"main\",null,{\"children\":[\"$\",\"$Lb\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"template\":[\"$\",\"$Lc\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"asNotFound\":false,\"childProp\":{\"current\":[\"$\",\"$Lb\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"posts\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"template\":[\"$\",\"$Lc\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"asNotFound\":false,\"childProp\":{\"current\":[\"$\",\"$Lb\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"posts\",\"children\",[\"slug\",\"dynamic-routing-static-regeneration\",\"c\"],\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"template\":[\"$\",\"$Lc\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"asNotFound\":false,\"childProp\":{\"current\":[\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"slug\\\":[\\\"dynamic-routing-static-regeneration\\\"]}\"},\"styles\":[]}],\"segment\":[\"slug\",\"dynamic-routing-static-regeneration\",\"c\"]},\"styles\":[]}],\"segment\":\"posts\"},\"styles\":[]}]}]]}],[\"$\",\"$La\",null,{}]]}]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"d:[\"$\",\"article\",null,{\"className\":\"py-6 prose dark:prose-invert\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"mb-2\",\"children\":\"Next.js 다이나믹 라우팅이란?\"}],[\"$\",\"p\",null,{\"className\":\"text-xl mt-0 text-slate-700 dark:text-slate-200\",\"children\":\"Next.js의 다이나믹 라우팅\"}],[\"$\",\"hr\",null,{\"className\":\"my-4\"}],[[\"$\",\"h2\",null,{\"children\":\"➕ Routing\"}],\"\\n\",[\"$\",\"blockquote\",null,{\"children\":[\"\\n\",[\"$\",\"ul\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":\"pages/about.js아래와 같이 React 구성 요소를 내보내는 것을 생성 하면 에서 액세스할 수 있다.\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":[\"리액트에서는 '/about' 이라고 각각의 페이지에 라우터를 추가해줬지만, next.js의 경우에는 \",[\"$\",\"strong\",null,{\"children\":\"pages 디렉토리안에 라우터 경로에 해당하는 title을 지정해주면 자동적으로 url로 적용된다.\"}]]}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"ul\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":\"react router 방식\"}],\"\\n\"]}],\"\\n\",[\"$\",\"pre\",null,{\"children\":[\"$\",\"code\",null,{\"className\":\"language-js\",\"children\":\"\u003e     \u003cRoutes\u003e\\n\u003e       \\t\u003cRoute path=\\\"/about\\\" component={\u003cAbout /\u003e} /\u003e\\n\u003e       \u003c/Routes\u003e\\n\"}]}],\"\\n\",[\"$\",\"ul\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":\"Next.js 방식\"}],\"\\n\"]}],\"\\n\",[\"$\",\"pre\",null,{\"children\":[\"$\",\"code\",null,{\"className\":\"language-js\",\"children\":\"\u003e     //pages/about\\n\u003e     export default function About(){\\n\u003e     \\treturn \u003cdiv\u003e\u003cThis is About Page./div\u003e\\n\u003e     }\\n\"}]}],\"\\n\",[\"$\",\"p\",null,{\"children\":\"따로 route 경로를 설정하지 않아도 자동으로 경로가 지정됨. next.js의 강점이라고 할 수 있음.\"}],\"\\n\",[\"$\",\"h2\",null,{\"children\":\"◻ Dynamic Routing(동적라우팅)\"}],\"\\n\",[\"$\",\"blockquote\",null,{\"children\":[\"\\n\",[\"$\",\"p\",null,{\"children\":[\"❓ \",[\"$\",\"strong\",null,{\"children\":\"동적 라우팅이란?\"}],[\"$\",\"br\",null,{}],\"\\n\",\"- 내부 네트워크와 외부 네트워크를 연결하기 위해서는 내부에서 외부로 연결하는 통로가 필요하고 이것을 gateway라 한다.시간과 비용 그리고 상황을 고려하여 여러가지 방법으로 목적지에 도달할 수 있는데 네트워크는 이러한 상황을 고려하여 \",[\"$\",\"strong\",null,{\"children\":\"목적지까지의 경로를 알려주는 것을 routing\"}],\"이라고 한다.\",[\"$\",\"br\",null,{}],\"\\n\",\"- \",[\"$\",\"strong\",null,{\"children\":\"Dynamic routing\"}],\"은 단어에서 풍겨지는 느낌 그대로 동적으로 경로 설정을 해주는 것이다. 네트워크가 변경됨에 따라 최적의 경로가 바뀔 수 있으며 \",[\"$\",\"strong\",null,{\"children\":\"dynamic route는 프로토콜에 따라 네트워크 변경에 맞춰 최적의 경로 값을 알려준다.\"}]]}],\"\\n\"]}],\"\\n\",[\"$\",\"blockquote\",null,{\"children\":[\"\\n\",[\"$\",\"p\",null,{\"children\":[\"❓ \",[\"$\",\"strong\",null,{\"children\":\"프로토콜이란?\"}],[\"$\",\"br\",null,{}],\"\\n\",\"- 프로토콜은 컴퓨터 내부에서, 또는 컴퓨터 사이에서 \",[\"$\",\"strong\",null,{\"children\":\"데이터의 교환 방식을 정의하는 규칙 체계\"}],\"입니다. 기기 간 통신은 교환되는 데이터의 형식에 대해 상호 합의를 요구한다. 이런 형식을 정의하는 규칙의 집합을 프로토콜이라고 한다.\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"blockquote\",null,{\"children\":[\"\\n\",[\"$\",\"p\",null,{\"children\":[\"❗ \",[\"$\",\"strong\",null,{\"children\":\"내가 생각하는 동적라우팅\"}],[\"$\",\"br\",null,{}],\"\\n\",\"- 페이지와 네트워크를 연결하는 url이 있고, 연결하는 경로를 라우팅이라고 한다. 네트워크가 변경됨에 따라 동적 라우팅은 달라지며, 프로토콜에 따라 네트워크 변경에 맞게 최적의 경로 값을 알려준다.\",[\"$\",\"br\",null,{}],\"\\n\",\"- 예를 들어 10명의 데이터를 갖고있는 users data가 있다고 가정하면, next.js, react-dom-router 에서는 id를 url경로로 만들어 동적으로 id에 맞는 data를 가져오도록한다.(브라우져와 id를 갖고 동적으로 네트워킹함.) 이게 동적 라우팅임. 내 생각엔.\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"h3\",null,{\"children\":\"✨ Next.js에서의 동적라우팅\"}],\"\\n\",[\"$\",\"p\",null,{\"children\":\"◾ next.js 공홈 동적라우팅 예제\"}],\"\\n\",[\"$\",\"pre\",null,{\"children\":[\"$\",\"code\",null,{\"className\":\"language-js\",\"children\":\"\u003e *   components  \\n\u003e     \\\\- header.js\\n\u003e *   pages\\n\u003e     *   index.js\\n\u003e     *   about.js\\n\u003e     *   \\\\[id\\\\]\\n\u003e         *   index.js\\n\u003e         *   \\\\[comment\\\\].js\\n\"}]}],\"\\n\",[\"$\",\"p\",null,{\"children\":\"◾ index.js =\u003e route : '/'\"}],\"\\n\",[\"$\",\"pre\",null,{\"children\":[\"$\",\"code\",null,{\"className\":\"language-js\",\"children\":\"\u003e     import Header from '../components/header'\\n\u003e     const Home = () =\u003e (\\n\u003e       \u003c\u003e\\n\u003e         \u003cHeader /\u003e\\n\u003e         \u003ch1\u003eHello World!\u003c/h1\u003e\\n\u003e       \u003c/\u003e\\n\u003e     )\\n\u003e     export default Home\\n\"}]}],\"\\n\",[\"$\",\"p\",null,{\"children\":\"◾ components/header.js\"}],\"\\n\",[\"$\",\"pre\",null,{\"children\":[\"$\",\"code\",null,{\"className\":\"language-js\",\"children\":\"\u003e     import Link from 'next/link'\\n\u003e     const Header = () =\u003e (\\n\u003e       \u003cheader\u003e\\n\u003e         \u003cul\u003e\\n\u003e           \u003cli\u003e\\n\u003e             \u003cLink href=\\\"/post/first\\\"\u003e\\n\u003e             //query:{id:'first'}\\n\u003e               \u003ca\u003eFirst Post\u003c/a\u003e\\n\u003e             \u003c/Link\u003e\\n\u003e           \u003c/li\u003e\\n\u003e           \u003cli\u003e\\n\u003e             \u003cLink href=\\\"/post/second\\\"\u003e\\n\u003e             //query:{id:'second'}\\n\u003e               \u003ca\u003eSecond Post\u003c/a\u003e\\n\u003e             \u003c/Link\u003e\\n\u003e           \u003c/li\u003e\\n\u003e         \u003c/ul\u003e\\n\u003e       \u003c/header\u003e\\n\u003e     )\\n\u003e     export default Header\\n\"}]}],\"\\n\",[\"$\",\"p\",null,{\"children\":\"◾ pages/[id]/index.js =\u003e route : '/first or second'\"}],\"\\n\",[\"$\",\"pre\",null,{\"children\":[\"$\",\"code\",null,{\"className\":\"language-js\",\"children\":\"\u003e     import { useRouter } from \\\"next/router\\\";\\n\u003e     import Link from \\\"next/link\\\";\\n\u003e     import Header from \\\"../../../components/header\\\";\\n\u003e     const Post = () =\u003e {\\n\u003e       const router = useRouter();\\n\u003e       const { id } = router.query;\\n\u003e       return (\\n\u003e         \u003c\u003e\\n\u003e           \u003cHeader /\u003e\\n\u003e           \u003ch1\u003ePost: {id}\u003c/h1\u003e\\n\u003e           // first or second\\n\u003e           \u003cul\u003e\\n\u003e             \u003cli\u003e\\n\u003e               \u003cLink href=\\\"/post/[id]/[comment]\\\" as={`/post/${id}/first-comment`}\u003e\\n\u003e                 \u003ca\u003eFirst comment\u003c/a\u003e\\n\u003e               \u003c/Link\u003e\\n\u003e             \u003c/li\u003e\\n\u003e             \u003cli\u003e\\n\u003e               \u003cLink href=\\\"/post/[id]/[comment]\\\" as={`/post/${id}/second-comment`}\u003e\\n\u003e                 \u003ca\u003eSecond comment\u003c/a\u003e\\n\u003e               \u003c/Link\u003e\\n\u003e             \u003c/li\u003e\\n\u003e           \u003c/ul\u003e\\n\u003e         \u003c/\u003e\\n\u003e       );\\n\u003e     };\\n\u003e     export default Post;\\n\"}]}]]]}]\n"])</script><script>self.__next_f.push([1,"5:[[[\"$\",\"meta\",null,{\"charSet\":\"utf-8\"}],[\"$\",\"title\",null,{\"children\":\"Next.js 다이나믹 라우팅이란?\"}],[\"$\",\"meta\",null,{\"name\":\"description\",\"content\":\"Next.js의 다이나믹 라우팅\"}],null,null,null,null,null,null,null,null,[\"$\",\"meta\",null,{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],null,null,null,null,null,null,null,null,null,null,[]],[null,null,null,null],null,null,[null,null,null,null,null],null,null,null,null,[null,[[\"$\",\"link\",null,{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"any\"}]],[],null]]\n"])</script>

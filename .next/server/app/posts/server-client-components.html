@@ -1,0 +1,109 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><link rel="preload" as="font" href="/_next/static/media/2aaf0723e720e8b9-s.p.woff2" crossorigin="" type="font/woff2"/><link rel="stylesheet" href="/_next/static/css/97e1ef85d85e825c.css" data-precedence="next"/><title>Server Side와 Client Side (CSR, SSR, SSG, ISG)</title><meta name="description" content="CSR, SSR, SSG, ISG 우리는 어떤 것을 사용해야할까?"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="any"/><meta name="next-size-adjust"/><script src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js" noModule=""></script></head><body class="antialiased min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 __className_0ec1f4"><script>!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','dark');var e=localStorage.getItem('theme');if('system'===e||(!e&&true)){var t='(prefers-color-scheme: dark)',m=window.matchMedia(t);if(m.media!==t||m.matches){d.style.colorScheme = 'dark';c.add('dark')}else{d.style.colorScheme = 'light';c.add('light')}}else if(e){c.add(e|| '')}if(e==='light'||e==='dark')d.style.colorScheme=e}catch(e){}}()</script><div class="max-w-2xl mx-auto py-10 px-4"><header><div class="flex items-center justify-between"><button class="border rounded-md w-6 h-6 flex items-center justify-center"><span class="sr-only">Toggle mode</span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg></button><nav class="ml-auto text-md font-medium space-x-6"><a href="/">Home</a><a href="/about">About</a></nav></div></header><main><article class="py-6 prose dark:prose-invert"><h1 class="mb-2">Server Side와 Client Side (CSR, SSR, SSG, ISG)</h1><p class="text-xl mt-0 text-slate-700 dark:text-slate-200">CSR, SSR, SSG, ISG 우리는 어떤 것을 사용해야할까?</p><hr class="my-4"/><h3>CSR(Client Server Rendering) 방식</h3>
+<ol>
+<li>html + static 파일들을 내려받는다</li>
+<li>javascript 같은 동적 파일들을 내려받는다.</li>
+<li>그 다음 서버에 필요한 파일들을 요청한다.</li>
+</ol>
+<ul>
+<li>
+<p>SPA(Single Page Application)</p>
+<ul>
+<li>부분적으로 필요한 곳만 업데이트한 후 필요한 정보가 있을 때만 서버로 데이터를 요청하여 자바스크립트를 처리 후 페이지를 렌더링 한다.</li>
+</ul>
+</li>
+<li>
+<p>장점</p>
+<ul>
+<li>첫 로딩에 정적 파일들만 다운받으면 동적으로 빠르게 렌더링 가능</li>
+<li>서버에 요청하는 횟수가 적다.</li>
+</ul>
+</li>
+<li>
+<p>단점</p>
+<ul>
+<li>모든 정적 파일들이 로드될 떄 까지 기다려야한다.</li>
+<li>SEO 검색 최적화 문제<!-- -->
+<ul>
+<li>우선적으로 텅 빈 HTML을 만나게 되어 어떤 페이지인지 알 수 없다.</li>
+<li>구글에서는 JS까지 크롤링</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>정리</p>
+<ul>
+<li>
+<p>브라우저 접속 시 요청을 한 후 서버는 정적 파일을 먼저 보낸다. html 파싱과 js파일을 요청한 후에야 유저는 페이지를 확인할 수 있다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3>SSR(Server Side Rendering) 방식</h3>
+<ol>
+<li>완전하게 만들어진 HTML 파일을 받아온 후 일부JS파일과 렌더링</li>
+<li>웹 서버에 요청할 떄 마다 브라우저에서 새로고침이 일어나고 서버에 새로운 페이지를 요청</li>
+</ol>
+<ul>
+<li>
+<p>장점</p>
+<ul>
+<li>초기 로딩 속도가 빠름</li>
+<li>SEO 검색엔진 최적화 가능</li>
+</ul>
+</li>
+<li>
+<p>단점</p>
+<ul>
+<li>
+<p>매번 페이지를 요청하여 서버부하</p>
+</li>
+<li>
+<p>Blinking Issue</p>
+</li>
+<li>
+<p>interacting 반응이 안일어날 수 있다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3>그럼 둘 중 어떤 것을 써야할까?</h3>
+<p>CSR는 해당 페이지가 보일때 까지 걸리는 시간(TTV)이 있고, SSR은 동적인 활동을 시작할 수 있을 때 까지 걸리는 시간이 있어 둘다 단점이 있다. 전자는 JS파일을 얼마나 효율적으로 보낼 수 있는지, 후자는 UI/UX의 개선을 신경써야 한다.</p>
+<h3>SSG(Static Site Generation) 방식</h3>
+<ol>
+<li>모든 페이지가 정적으로 생성</li>
+<li>바로 동적파일 로딩</li>
+<li>빌드시에만 API 호출, 호출 제한을 둘 수 있다.</li>
+</ol>
+<ul>
+<li>단점<!-- -->
+<ul>
+<li>콘텐츠가 업데이트 되려면 페이지를 다시 빌드해야한다</li>
+<li>웹사이트가 크다면 빌드 시간이 매우 길 수 있다.</li>
+<li>지속적인 업데이트가 있는 경우 사용 지양</li>
+</ul>
+</li>
+</ul>
+<p>Gatsby</p>
+<ul>
+<li>React로 만든 웹 어플리케이션을 정적으로 페이지를 미리 생성해놓고 서버에 배포할 수 있다.</li>
+<li>미리 생성해놓은 페이지가 전부 정적인 페이지가 아니라 JS 파일도 가지고 있어 동적으로 처리 가능하다.</li>
+</ul>
+<p>Next JS</p>
+<ul>
+<li>
+<p>SSR만 지원하는 라이브러리였지만 SSG도 지원</p>
+</li>
+<li>
+<p>CSR + SSR 적당히 섞임(ISR)</p>
+</li>
+</ul>
+<h3>ISG(Incremental Static Generation) 방식</h3>
+<p>Next.js v9.5에서는 SSR과 SSG 두가지 하이브리드 버전인 ISR이라는 새로운 전략이 탄생<br/>
+<!-- -->ISR은 빌드되는 동안 정적 페이지를 재생성할 수 있다.</p>
+<ol>
+<li>정적 페이지가 바로 로딩 (SSR과의 차이)</li>
+<li>동적파일 로딩</li>
+<li>업데이트가 발생하면 코드스플릿팅을 통해 부분적으로 업데이트</li>
+</ol>
+<p>코드스플릿팅 | SPA는 한 파일로 결합되어 있다. 예를 들어 하나의 페이지를 보고 싶지만 페이지를 로딩하면서 다른 페이지들 정보 또한 다운로드 하게 된다. 이 부분을 유동적으로 해결해 주는 것.</p></article></main></div><script src="/_next/static/chunks/webpack-6728a9b28f251f81.js" async=""></script><script src="/_next/static/chunks/2443530c-ac8981f6a5707b30.js" async=""></script><script src="/_next/static/chunks/139-a247973f5f8d117e.js" async=""></script><script src="/_next/static/chunks/main-app-acadf0f678c7afa8.js" async=""></script></body></html><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:HL[\"/_next/static/media/2aaf0723e720e8b9-s.p.woff2\",{\"as\":\"font\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/97e1ef85d85e825c.css\",{\"as\":\"style\"}]\n0:\"$L3\"\n"])</script><script>self.__next_f.push([1,"4:I{\"id\":\"7858\",\"chunks\":[\"272:static/chunks/webpack-6728a9b28f251f81.js\",\"667:static/chunks/2443530c-ac8981f6a5707b30.js\",\"139:static/chunks/139-a247973f5f8d117e.js\"],\"name\":\"\",\"async\":false}\n6:I{\"id\":\"3055\",\"chunks\":[\"272:static/chunks/webpack-6728a9b28f251f81.js\",\"667:static/chunks/2443530c-ac8981f6a5707b30.js\",\"139:static/chunks/139-a247973f5f8d117e.js\"],\"name\":\"\",\"async\":false}\n7:I{\"id\":\"2112\",\"chunks\":[\"414:static/chunks/414-bfaafd372e832af9.js\",\"185:static/chunks/app/layout-9e07d8f5fbbdc297.js\"],\"nam"])</script><script>self.__next_f.push([1,"e\":\"ThemeProvider\",\"async\":false}\n8:I{\"id\":\"4349\",\"chunks\":[\"414:static/chunks/414-bfaafd372e832af9.js\",\"185:static/chunks/app/layout-9e07d8f5fbbdc297.js\"],\"name\":\"ModeToggle\",\"async\":false}\n9:I{\"id\":\"414\",\"chunks\":[\"414:static/chunks/414-bfaafd372e832af9.js\",\"185:static/chunks/app/layout-9e07d8f5fbbdc297.js\"],\"name\":\"\",\"async\":false}\na:I{\"id\":\"1234\",\"chunks\":[\"414:static/chunks/414-bfaafd372e832af9.js\",\"185:static/chunks/app/layout-9e07d8f5fbbdc297.js\"],\"name\":\"Analytics\",\"async\":false}\nb:I{\"id\":\"9544\",\"ch"])</script><script>self.__next_f.push([1,"unks\":[\"272:static/chunks/webpack-6728a9b28f251f81.js\",\"667:static/chunks/2443530c-ac8981f6a5707b30.js\",\"139:static/chunks/139-a247973f5f8d117e.js\"],\"name\":\"\",\"async\":false}\nc:I{\"id\":\"99\",\"chunks\":[\"272:static/chunks/webpack-6728a9b28f251f81.js\",\"667:static/chunks/2443530c-ac8981f6a5707b30.js\",\"139:static/chunks/139-a247973f5f8d117e.js\"],\"name\":\"\",\"async\":false}\n"])</script><script>self.__next_f.push([1,"3:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/97e1ef85d85e825c.css\",\"precedence\":\"next\"}]],[\"$\",\"$L4\",null,{\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/posts/server-client-components\",\"initialTree\":[\"\",{\"children\":[\"posts\",{\"children\":[[\"slug\",\"server-client-components\",\"c\"],{\"children\":[\"__PAGE__?{\\\"slug\\\":[\\\"server-client-components\\\"]}\",{}]}]}]},\"$undefined\",\"$undefined\",true],\"initialHead\":[\"$L5\",[\"$\",\"meta\",null,{\"name\":\"next-size-adjust\"}]],\"globalErrorComponent\":\"$6\",\"notFound\":[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"antialiased min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 __className_0ec1f4\",\"children\":[\"$\",\"$L7\",null,{\"attribute\":\"class\",\"defaultTheme\":\"system\",\"enableSystem\":true,\"children\":[[\"$\",\"div\",null,{\"className\":\"max-w-2xl mx-auto py-10 px-4\",\"children\":[[\"$\",\"header\",null,{\"children\":[\"$\",\"div\",null,{\"className\":\"flex items-center justify-between\",\"children\":[[\"$\",\"$L8\",null,{}],[\"$\",\"nav\",null,{\"className\":\"ml-auto text-md font-medium space-x-6\",\"children\":[[\"$\",\"$L9\",null,{\"href\":\"/\",\"children\":\"Home\"}],[\"$\",\"$L9\",null,{\"href\":\"/about\",\"children\":\"About\"}]]}]]}]}],[\"$\",\"main\",null,{\"children\":[\"$undefined\",[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]]]}]]}],[\"$\",\"$La\",null,{}]]}]}]}],\"asNotFound\":false,\"children\":[[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"antialiased min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-50 __className_0ec1f4\",\"children\":[\"$\",\"$L7\",null,{\"attribute\":\"class\",\"defaultTheme\":\"system\",\"enableSystem\":true,\"children\":[[\"$\",\"div\",null,{\"className\":\"max-w-2xl mx-auto py-10 px-4\",\"children\":[[\"$\",\"header\",null,{\"children\":[\"$\",\"div\",null,{\"className\":\"flex items-center justify-between\",\"children\":[[\"$\",\"$L8\",null,{}],[\"$\",\"nav\",null,{\"className\":\"ml-auto text-md font-medium space-x-6\",\"children\":[[\"$\",\"$L9\",null,{\"href\":\"/\",\"children\":\"Home\"}],[\"$\",\"$L9\",null,{\"href\":\"/about\",\"children\":\"About\"}]]}]]}]}],[\"$\",\"main\",null,{\"children\":[\"$\",\"$Lb\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"template\":[\"$\",\"$Lc\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"asNotFound\":false,\"childProp\":{\"current\":[\"$\",\"$Lb\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"posts\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"template\":[\"$\",\"$Lc\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"asNotFound\":false,\"childProp\":{\"current\":[\"$\",\"$Lb\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"posts\",\"children\",[\"slug\",\"server-client-components\",\"c\"],\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"loading\":\"$undefined\",\"loadingStyles\":\"$undefined\",\"hasLoading\":false,\"template\":[\"$\",\"$Lc\",null,{}],\"templateStyles\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\",\"asNotFound\":false,\"childProp\":{\"current\":[\"$Ld\",null],\"segment\":\"__PAGE__?{\\\"slug\\\":[\\\"server-client-components\\\"]}\"},\"styles\":[]}],\"segment\":[\"slug\",\"server-client-components\",\"c\"]},\"styles\":[]}],\"segment\":\"posts\"},\"styles\":[]}]}]]}],[\"$\",\"$La\",null,{}]]}]}]}],null]}]]\n"])</script><script>self.__next_f.push([1,"d:[\"$\",\"article\",null,{\"className\":\"py-6 prose dark:prose-invert\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"mb-2\",\"children\":\"Server Side와 Client Side (CSR, SSR, SSG, ISG)\"}],[\"$\",\"p\",null,{\"className\":\"text-xl mt-0 text-slate-700 dark:text-slate-200\",\"children\":\"CSR, SSR, SSG, ISG 우리는 어떤 것을 사용해야할까?\"}],[\"$\",\"hr\",null,{\"className\":\"my-4\"}],[[\"$\",\"h3\",null,{\"children\":\"CSR(Client Server Rendering) 방식\"}],\"\\n\",[\"$\",\"ol\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":\"html + static 파일들을 내려받는다\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"javascript 같은 동적 파일들을 내려받는다.\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"그 다음 서버에 필요한 파일들을 요청한다.\"}],\"\\n\"]}],\"\\n\",[\"$\",\"ul\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":[\"\\n\",[\"$\",\"p\",null,{\"children\":\"SPA(Single Page Application)\"}],\"\\n\",[\"$\",\"ul\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":\"부분적으로 필요한 곳만 업데이트한 후 필요한 정보가 있을 때만 서버로 데이터를 요청하여 자바스크립트를 처리 후 페이지를 렌더링 한다.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",null,{\"children\":[\"\\n\",[\"$\",\"p\",null,{\"children\":\"장점\"}],\"\\n\",[\"$\",\"ul\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":\"첫 로딩에 정적 파일들만 다운받으면 동적으로 빠르게 렌더링 가능\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"서버에 요청하는 횟수가 적다.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",null,{\"children\":[\"\\n\",[\"$\",\"p\",null,{\"children\":\"단점\"}],\"\\n\",[\"$\",\"ul\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":\"모든 정적 파일들이 로드될 떄 까지 기다려야한다.\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":[\"SEO 검색 최적화 문제\",\"\\n\",[\"$\",\"ul\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":\"우선적으로 텅 빈 HTML을 만나게 되어 어떤 페이지인지 알 수 없다.\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"구글에서는 JS까지 크롤링\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",null,{\"children\":[\"\\n\",[\"$\",\"p\",null,{\"children\":\"정리\"}],\"\\n\",[\"$\",\"ul\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":[\"\\n\",[\"$\",\"p\",null,{\"children\":\"브라우저 접속 시 요청을 한 후 서버는 정적 파일을 먼저 보낸다. html 파싱과 js파일을 요청한 후에야 유저는 페이지를 확인할 수 있다.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"h3\",null,{\"children\":\"SSR(Server Side Rendering) 방식\"}],\"\\n\",[\"$\",\"ol\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":\"완전하게 만들어진 HTML 파일을 받아온 후 일부JS파일과 렌더링\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"웹 서버에 요청할 떄 마다 브라우저에서 새로고침이 일어나고 서버에 새로운 페이지를 요청\"}],\"\\n\"]}],\"\\n\",[\"$\",\"ul\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":[\"\\n\",[\"$\",\"p\",null,{\"children\":\"장점\"}],\"\\n\",[\"$\",\"ul\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":\"초기 로딩 속도가 빠름\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"SEO 검색엔진 최적화 가능\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",null,{\"children\":[\"\\n\",[\"$\",\"p\",null,{\"children\":\"단점\"}],\"\\n\",[\"$\",\"ul\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":[\"\\n\",[\"$\",\"p\",null,{\"children\":\"매번 페이지를 요청하여 서버부하\"}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",null,{\"children\":[\"\\n\",[\"$\",\"p\",null,{\"children\":\"Blinking Issue\"}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",null,{\"children\":[\"\\n\",[\"$\",\"p\",null,{\"children\":\"interacting 반응이 안일어날 수 있다.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"h3\",null,{\"children\":\"그럼 둘 중 어떤 것을 써야할까?\"}],\"\\n\",[\"$\",\"p\",null,{\"children\":\"CSR는 해당 페이지가 보일때 까지 걸리는 시간(TTV)이 있고, SSR은 동적인 활동을 시작할 수 있을 때 까지 걸리는 시간이 있어 둘다 단점이 있다. 전자는 JS파일을 얼마나 효율적으로 보낼 수 있는지, 후자는 UI/UX의 개선을 신경써야 한다.\"}],\"\\n\",[\"$\",\"h3\",null,{\"children\":\"SSG(Static Site Generation) 방식\"}],\"\\n\",[\"$\",\"ol\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":\"모든 페이지가 정적으로 생성\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"바로 동적파일 로딩\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"빌드시에만 API 호출, 호출 제한을 둘 수 있다.\"}],\"\\n\"]}],\"\\n\",[\"$\",\"ul\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":[\"단점\",\"\\n\",[\"$\",\"ul\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":\"콘텐츠가 업데이트 되려면 페이지를 다시 빌드해야한다\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"웹사이트가 크다면 빌드 시간이 매우 길 수 있다.\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"지속적인 업데이트가 있는 경우 사용 지양\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"p\",null,{\"children\":\"Gatsby\"}],\"\\n\",[\"$\",\"ul\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":\"React로 만든 웹 어플리케이션을 정적으로 페이지를 미리 생성해놓고 서버에 배포할 수 있다.\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"미리 생성해놓은 페이지가 전부 정적인 페이지가 아니라 JS 파일도 가지고 있어 동적으로 처리 가능하다.\"}],\"\\n\"]}],\"\\n\",[\"$\",\"p\",null,{\"children\":\"Next JS\"}],\"\\n\",[\"$\",\"ul\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":[\"\\n\",[\"$\",\"p\",null,{\"children\":\"SSR만 지원하는 라이브러리였지만 SSG도 지원\"}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",null,{\"children\":[\"\\n\",[\"$\",\"p\",null,{\"children\":\"CSR + SSR 적당히 섞임(ISR)\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"h3\",null,{\"children\":\"ISG(Incremental Static Generation) 방식\"}],\"\\n\",[\"$\",\"p\",null,{\"children\":[\"Next.js v9.5에서는 SSR과 SSG 두가지 하이브리드 버전인 ISR이라는 새로운 전략이 탄생\",[\"$\",\"br\",null,{}],\"\\n\",\"ISR은 빌드되는 동안 정적 페이지를 재생성할 수 있다.\"]}],\"\\n\",[\"$\",\"ol\",null,{\"children\":[\"\\n\",[\"$\",\"li\",null,{\"children\":\"정적 페이지가 바로 로딩 (SSR과의 차이)\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"동적파일 로딩\"}],\"\\n\",[\"$\",\"li\",null,{\"children\":\"업데이트가 발생하면 코드스플릿팅을 통해 부분적으로 업데이트\"}],\"\\n\"]}],\"\\n\",[\"$\",\"p\",null,{\"children\":\"코드스플릿팅 | SPA는 한 파일로 결합되어 있다. 예를 들어 하나의 페이지를 보고 싶지만 페이지를 로딩하면서 다른 페이지들 정보 또한 다운로드 하게 된다. 이 부분을 유동적으로 해결해 주는 것.\"}]]]}]\n"])</script><script>self.__next_f.push([1,"5:[[[\"$\",\"meta\",null,{\"charSet\":\"utf-8\"}],[\"$\",\"title\",null,{\"children\":\"Server Side와 Client Side (CSR, SSR, SSG, ISG)\"}],[\"$\",\"meta\",null,{\"name\":\"description\",\"content\":\"CSR, SSR, SSG, ISG 우리는 어떤 것을 사용해야할까?\"}],null,null,null,null,null,null,null,null,[\"$\",\"meta\",null,{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],null,null,null,null,null,null,null,null,null,null,[]],[null,null,null,null],null,null,[null,null,null,null,null],null,null,null,null,[null,[[\"$\",\"link\",null,{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"any\"}]],[],null]]\n"])</script>
